@@ -24,3 +24,133 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.react-colorful__saturation {
+  margin-bottom:20px;
+  border-radius: 10px;
+}
+.react-colorful__interactive,.react-colorful__last-control {
+  border-radius: 8px !important;
+}
+.react-colorful__alpha, .react-colorful__hue {
+  height: 16px !important;
+}
+.react-colorful__pointer {
+  height: 18px !important;
+  width: 18px !important;
+}
+
+div.previewsSection > img.designonepreview {
+  transform: rotate(-5deg) translateX(-15px);
+  margin-top: -4px;
+}
+
+
+img.designtwopreview, img.designonepreview {
+  width: 60px;
+  aspect-ratio: 4 / 3;
+  background: rgb(16 16 18);
+  border-radius: 8px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .6);
+  outline: solid 1px rgb(13 13 13 / 80%);
+  outline-offset: -1px;
+}
+
+.visual {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 7px;
+  margin-top: -95px;
+}
+
+.visual div {
+  aspect-ratio: 4/3;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 6%);
+}
+
+.visual:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,rgb(28 28 30) 0,transparent 100%);
+  z-index: 1;
+}
+
+@media only screen and (min-width: 0px)and (max-width:800px) {
+   .visual {
+      display:flex;
+      overflow: hidden
+  }
+
+  .visual div {
+      min-width: 52px;
+      aspect-ratio: 2/3
+  }
+
+
+}
+
+.previewsSection:hover .designonepreview {
+  transform: rotate(-7deg) translate3d(-20px, -5px, 0) scale(1.2);
+  
+}
+.previewsSection:hover .designtwopreview {
+  transform: rotate(7deg) translate3d(5px, 5px, 0) scale(1.1);
+}
+
+.visual div {
+  background: rgb(28 28 30 .12);
+  border-color: rgb(28 28 30 0.12);
+  opacity: 0;
+  animation: visualAnim .8s linear infinite alternate
+}
+
+.visual div:first-child {
+  animation-delay: .1s
+}
+
+.visual div:nth-child(2) {
+  animation-delay: .2s
+}
+
+.visual div:nth-child(3) {
+  animation-delay: .3s
+}
+
+.visual div:nth-child(4) {
+  animation-delay: .4s
+}
+
+ .visual div:nth-child(5) {
+  animation-delay: .5s
+}
+
+ .visual div:nth-child(6) {
+  animation-delay: .6s
+}
+
+ .visual div:nth-child(7) {
+  animation-delay: .7s
+}
+
+.visual div:nth-child(8) {
+  animation-delay: .8s
+}
+
+@keyframes visualAnim {
+  to {
+      opacity: 1
+  }
+}

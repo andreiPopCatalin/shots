@@ -1,0 +1,223 @@
+import { cn } from "@/utils/cn";
+import ImageSection from "../ImageSection.tsx/imageSection";
+import { useState } from "react";
+import GradientSection from "../gradientSection.tsx/gradientSection";
+import SolidColorSection from "../solidColorsSection.tsx/solidColorsSection";
+import MagicBackgroundsPanel from "../magicBackgroundPanel/magicBackgroundPanel";
+import EffectsPanel from "../effectsSection.tsx/effectsSection";
+import ScenesSection from "../scenesSection/scenesSection";
+import BackgroundSection from "../backgroundSection.tsx/backgroundSection";
+import AspectRatioSelector from "../aspectRationSection/aspectRationSection";
+
+interface SidebarProps {
+  items: { name: string }[];
+  activeItem: string;
+  onItemClick: (name: string) => void;
+}
+
+const gradients = [
+    {
+        title: "Gradients",
+        gradients: [
+            "linear-gradient(140deg, rgb(255, 100, 50) 12.8%, rgb(255, 0, 101) 43.52%, rgb(123, 46, 255) 84.34%);",
+            "linear-gradient(140deg, rgb(244, 229, 240), rgb(229, 54, 171), rgb(92, 3, 188), rgb(14, 7, 37));",
+            "linear-gradient(135deg, rgb(238, 221, 243), rgb(238, 146, 177), rgb(99, 48, 180));",
+            "linear-gradient(113.96deg, rgb(69, 190, 232) 13.54%, rgb(214, 161, 172) 50%, rgb(232, 140, 93) 85.42%);",
+            "linear-gradient(113.96deg, rgb(69, 233, 159) 11.98%, rgb(213, 168, 155) 50%, rgb(232, 70, 152) 85.42%);",
+            "linear-gradient(113.96deg, rgb(69, 223, 232) 11.98%, rgb(211, 170, 175) 50%, rgb(232, 103, 100) 85.42%);",
+            "linear-gradient(293.96deg, rgb(160, 233, 125) 11.46%, rgb(169, 203, 177) 50%, rgb(192, 128, 232) 88.54%);",
+            "linear-gradient(-45deg, rgb(114, 122, 154), rgb(216, 219, 233));",
+            "linear-gradient(135deg, rgb(48, 48, 48), rgb(16, 16, 16));",
+            "linear-gradient(135deg, rgb(79, 172, 254), rgb(0, 242, 254));",
+            "linear-gradient(135deg, rgb(10, 207, 254), rgb(73, 90, 255));",
+            "linear-gradient(-45deg, rgb(61, 78, 129) 0%, rgb(87, 83, 201) 48%, rgb(110, 127, 243) 100%);",
+            "linear-gradient(135deg, rgb(198, 255, 221), rgb(251, 215, 134), rgb(247, 121, 125));",
+
+        ]
+    }
+];
+const categories = [
+    {
+        title: "Mystic gradient",
+        images: [
+          "/images/mystic-gradients/1.jpg", 
+          "/images/mystic-gradients/2.jpg", 
+          "/images/mystic-gradients/3.jpg", 
+          "/images/mystic-gradients/4.jpg", 
+          "/images/mystic-gradients/5.jpg", 
+          "/images/mystic-gradients/6.jpg", 
+          "/images/mystic-gradients/7.jpg",
+          "/images/mystic-gradients/8.jpg", 
+          "/images/mystic-gradients/9.jpg", 
+          "/images/mystic-gradients/10.jpg",
+          "/images/mystic-gradients/11.jpg", 
+          "/images/mystic-gradients/12.jpg", 
+          "/images/mystic-gradients/13.jpg", 
+          "/images/mystic-gradients/14.jpg", 
+          "/images/mystic-gradients/15.jpg"
+          ], 
+    },
+    {
+      title: "Cosmic gradient",
+      images: [
+        "/images/cosmic/1.jpg", 
+        "/images/cosmic/2.jpg", 
+        "/images/cosmic/3.jpg", 
+        "/images/cosmic/4.jpg", 
+        "/images/cosmic/5.jpg", 
+        "/images/cosmic/6.jpg", 
+        "/images/cosmic/7.jpg",
+        "/images/cosmic/8.jpg", 
+        "/images/cosmic/9.jpg", 
+        "/images/cosmic/10.jpg"
+        ], 
+    },
+    {
+      title: "Desktop Background",
+      images: [
+        "/images/desktop/sequoia-light.jpg", 
+        "/images/desktop/sonoma-light.jpg", 
+        "/images/desktop/ventura-light.jpg", 
+        "/images/desktop/sequoia-dark.jpg", 
+        "/images/desktop/sonoma-dark.jpg", 
+        "/images/desktop/ventura-dark.jpg", 
+        "/images/desktop/monterey-light.jpg",
+        "/images/desktop/bigsur-light.jpg", 
+        "/images/desktop/mojave-light.jpg", 
+        "/images/desktop/monterey-dark.jpg",
+        "/images/desktop/bigsur-dark.jpg",
+        "/images/desktop/mojave-dark.jpg"
+        ], 
+    },
+    {
+        title: "Abstract",
+        images: [
+          "/images/abstract/photo-1687042277425-89b414406d3a.avif", 
+          "/images/abstract/photo-1687042277586-971369d3d241.avif", 
+          "/images/abstract/photo-1620121684840-edffcfc4b878.avif", 
+          "/images/abstract/photo-1687392946855-8e35efa25ad7.avif", 
+          "/images/abstract/photo-1620121692029-d088224ddc74.avif", 
+          "/images/abstract/photo-1655841439659-0afc60676b70.avif", 
+          "/images/abstract/1.jpg",
+          "/images/abstract/16.jpg", 
+          "/images/abstract/12.jpg"
+          ], 
+      },
+      {
+        title: "Radiant gradient",
+        images: [
+          "/images/radiant/1.jpg", 
+          "/images/radiant/2.jpg", 
+          "/images/radiant/3.jpg", 
+          "/images/radiant/4.jpg", 
+          "/images/radiant/5.jpg", 
+          "/images/radiant/6.jpg", 
+          "/images/radiant/7.jpg",
+          "/images/radiant/8.jpg", 
+          "/images/radiant/9.jpg", 
+          "/images/radiant/10.jpg",
+          "/images/radiant/11.jpg", 
+          "/images/radiant/12.jpg"
+          ], 
+    },
+    {
+        title: "Earth",
+        images: [
+          "/images/earth/photo-1482976818992-9487ee04f08b.avif", 
+          "/images/earth/photo-1554147090-e1221a04a025.avif", 
+          "/images/earth/photo-1499988921418-b7df40ff03f9.avif", 
+          "/images/earth/photo-1490358930084-2d26f21dc211.avif", 
+          "/images/earth/photo-1511860810434-a92f84c6f01e.avif", 
+          "/images/earth/photo-1554110397-9bac083977c6.avif",
+          "/images/earth/photo-1508739773434-c26b3d09e071.avif", 
+          "/images/earth/photo-1508144753681-9986d4df99b3.avif",
+          "/images/earth/photo-1671723521246-a6710cfafc70.avif"
+          ], 
+    },
+    {
+        title: "Texture",
+        images: [
+          "/images/texture/demo1.jpg", 
+          "/images/texture/photo-1531824475211-72594993ce2a.avif", 
+          "/images/texture/photo-1506968430777-bf7784a87f23.avif", 
+          "/images/texture/photo-1642455487913-1e21f9f6f5a0.avif", 
+          "/images/texture/photo-1639430257115-f63af9eab97d.avif", 
+          "/images/texture/photo-1571292098320-997aa03a5d19.avif",
+          "/images/texture/photo-1529753253655-470be9a42781.avif", 
+          "/images/texture/photo-1506213463051-7694f7a4b9e7.avif",
+          "/images/texture/photo-1575722290270-626b0208df99.avif"
+          ], 
+    },
+  ];
+
+export default function Sidebar({ items, activeItem, onItemClick }: SidebarProps) {
+  const [selectedImage, setSelectedImage] = useState<string>("");
+  const [selectedGradient, setSelectedGradient] = useState<string>("");
+  const [selectedSolidColor, setSelectedSolidColor] = useState<string>("");
+  return (
+    <aside className="w-[248px] bg-[#0D0D0D] scrollbar-hide pl-1 min-w-[248px] max-w-[248px] space-y-2">
+      <div className="w-full bg-[#1C1C1E] max-h-[44px] mt-1 rounded-xl p-1">
+        <div className="flex items-center justify-between">
+          {/* Left: Logo and Text (Single Button) */}
+          <button className="flex items-center hover:bg-[#2C2C2E] rounded-lg p-1 transition-colors">
+            <img
+              loading="eager"
+              decoding="async"
+              className="logo h-[30px]"
+              src="/images/company/shots-logo.png"
+              alt="Shots logo"
+            />
+            <span className="ml-2">Shots</span>
+          </button>
+
+          {/* Right: SVG/Icon Button */}
+          <button className="p-2 hover:bg-[#2C2C2E] rounded-lg transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24px" viewBox="0 0 24 24"><path fill="currentColor" d="M19.44 2.52H4.56c-1.32 0-2.4 1.08-2.4 2.4V15c0 1.32 1.08 2.4 2.4 2.4h1.92v4.08l6-4.08h6.96c1.32 0 2.4-1.08 2.4-2.4V4.92c0-1.32-1.08-2.4-2.4-2.4M7.392 7.32h4.896c.408 0 .72.312.72.72s-.312.72-.72.72H7.392a.72.72 0 0 1-.72-.72c0-.384.312-.72.72-.72m8.736 4.8H7.392a.72.72 0 0 1-.72-.72c0-.384.312-.72.72-.72h8.736c.408 0 .72.312.72.72s-.312.72-.72.72"></path></svg>
+          </button>
+        </div>
+      </div>
+      <div className="bg-[#1C1C1E] rounded-xl p-2">
+        <div className="flex text-center">
+        {items.map((item) => (
+                <div
+                key={item.name}
+                className={cn(
+                    "p-2 flex-col w-1/2 text-center cursor-pointer rounded-md hover:bg-zinc-800  transition-colors",
+                    activeItem === item.name ? "text-white" : "text-[#ffffff5c]"
+                )}
+                onClick={() => onItemClick(item.name)}
+                >
+                {item.icon} {item.name}
+                </div>
+            ))}
+        </div>
+        <AspectRatioSelector/>
+        <div className="frameSection overflow-y-auto scrollbar-hide h-full max-h-[90vh] pb-[116px] pt-[15px]">
+            <ScenesSection />
+            <EffectsPanel/>
+            <BackgroundSection/>
+            <MagicBackgroundsPanel />
+            <SolidColorSection onSelect={setSelectedSolidColor} />
+            {gradients.map((section) => (
+                <GradientSection
+                    key={section.title}
+                    title={section.title}
+                    gradients={section.gradients}
+                    selectedGradient={selectedGradient}
+                    onSelect={setSelectedGradient}
+                />
+            ))}
+            {categories.map((section) => (
+                <ImageSection
+                key={section.title}
+                title={section.title}
+                images={section.images}
+                selectedImage={selectedImage}
+                onSelect={setSelectedImage}
+                />
+            ))}
+        </div>
+      </div>
+    </aside>
+  );
+}
