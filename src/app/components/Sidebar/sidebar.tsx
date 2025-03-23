@@ -8,34 +8,60 @@ import EffectsPanel from "../effectsSection.tsx/effectsSection";
 import ScenesSection from "../scenesSection/scenesSection";
 import BackgroundSection from "../backgroundSection.tsx/backgroundSection";
 import AspectRatioSelector from "../aspectRationSection/aspectRationSection";
+import FeedbackModal from "../feedbackModal/feedbackModal";
+import MockupVisibilitySection from "../mockupVisibilitySection/mockupVisibilitySection";
+import DetailsSection from "../detailsSection/detailsSection";
+import SizePositionSection from "../sizePositionSection/sizePositionSection";
+import ShadowSection from "../shadowSection/shadowSection";
+import BorderSection from "../borderSection/borderSection";
+import MediaUploadSection from "../mediaUploadSection/mediaUploadSection";
+import StylesSection from "../stylesSection/stylesSection";
+import LayoutScreenSection from "../layoutScreenSection/layoutScreenSection";
 
 interface SidebarProps {
   items: { name: string }[];
   activeItem: string;
   onItemClick: (name: string) => void;
+  onToggleCompanySidebar: () => void;
 }
 
 const gradients = [
     {
         title: "Gradients",
         gradients: [
-            "linear-gradient(140deg, rgb(255, 100, 50) 12.8%, rgb(255, 0, 101) 43.52%, rgb(123, 46, 255) 84.34%);",
-            "linear-gradient(140deg, rgb(244, 229, 240), rgb(229, 54, 171), rgb(92, 3, 188), rgb(14, 7, 37));",
-            "linear-gradient(135deg, rgb(238, 221, 243), rgb(238, 146, 177), rgb(99, 48, 180));",
-            "linear-gradient(113.96deg, rgb(69, 190, 232) 13.54%, rgb(214, 161, 172) 50%, rgb(232, 140, 93) 85.42%);",
-            "linear-gradient(113.96deg, rgb(69, 233, 159) 11.98%, rgb(213, 168, 155) 50%, rgb(232, 70, 152) 85.42%);",
-            "linear-gradient(113.96deg, rgb(69, 223, 232) 11.98%, rgb(211, 170, 175) 50%, rgb(232, 103, 100) 85.42%);",
-            "linear-gradient(293.96deg, rgb(160, 233, 125) 11.46%, rgb(169, 203, 177) 50%, rgb(192, 128, 232) 88.54%);",
-            "linear-gradient(-45deg, rgb(114, 122, 154), rgb(216, 219, 233));",
-            "linear-gradient(135deg, rgb(48, 48, 48), rgb(16, 16, 16));",
-            "linear-gradient(135deg, rgb(79, 172, 254), rgb(0, 242, 254));",
-            "linear-gradient(135deg, rgb(10, 207, 254), rgb(73, 90, 255));",
-            "linear-gradient(-45deg, rgb(61, 78, 129) 0%, rgb(87, 83, 201) 48%, rgb(110, 127, 243) 100%);",
-            "linear-gradient(135deg, rgb(198, 255, 221), rgb(251, 215, 134), rgb(247, 121, 125));",
-
+            "linear-gradient(140deg, rgb(255, 100, 50) 12.8%, rgb(255, 0, 101) 43.52%, rgb(123, 46, 255) 84.34%)",
+            "linear-gradient(140deg, rgb(244, 229, 240), rgb(229, 54, 171), rgb(92, 3, 188), rgb(14, 7, 37))",
+            "linear-gradient(135deg, rgb(238, 221, 243), rgb(238, 146, 177), rgb(99, 48, 180))",
+            "linear-gradient(113.96deg, rgb(69, 190, 232) 13.54%, rgb(214, 161, 172) 50%, rgb(232, 140, 93) 85.42%)",
+            "linear-gradient(113.96deg, rgb(69, 233, 159) 11.98%, rgb(213, 168, 155) 50%, rgb(232, 70, 152) 85.42%)",
+            "linear-gradient(113.96deg, rgb(69, 223, 232) 11.98%, rgb(211, 170, 175) 50%, rgb(232, 103, 100) 85.42%)",
+            "linear-gradient(293.96deg, rgb(160, 233, 125) 11.46%, rgb(169, 203, 177) 50%, rgb(192, 128, 232) 88.54%)",
+            "linear-gradient(-45deg, rgb(114, 122, 154), rgb(216, 219, 233))",
+            "linear-gradient(135deg, rgb(48, 48, 48), rgb(16, 16, 16))",
+            "linear-gradient(135deg, rgb(79, 172, 254), rgb(0, 242, 254))",
+            "linear-gradient(135deg, rgb(10, 207, 254), rgb(73, 90, 255))",
+            "linear-gradient(-45deg, rgb(61, 78, 129) 0%, rgb(87, 83, 201) 48%, rgb(110, 127, 243) 100%)",
+            "linear-gradient(135deg, rgb(198, 255, 221), rgb(251, 215, 134), rgb(247, 121, 125))"
         ]
     }
 ];
+const styles = [
+  {
+      title: "Style",
+      images: [
+        "/images/media/default.png", 
+        "/images/media/glass-light.webp", 
+        "/images/media/glass-dark.png", 
+        "/images/media/outline.webp", 
+        "/images/media/border.png", 
+        "/images/media/retro.png", 
+        "/images/media/card.webp",
+        "/images/media/stack.png", 
+        "/images/media/stack-2.webp"
+        ], 
+  },
+];
+
 const categories = [
     {
         title: "Mystic gradient",
@@ -150,16 +176,25 @@ const categories = [
     },
   ];
 
-export default function Sidebar({ items, activeItem, onItemClick }: SidebarProps) {
+export default function Sidebar({ items, activeItem, onItemClick, onToggleCompanySidebar }: SidebarProps) {
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [selectedGradient, setSelectedGradient] = useState<string>("");
   const [selectedSolidColor, setSelectedSolidColor] = useState<string>("");
+  const [isCompanySidebarOpen, setCompanySidebarOpen] = useState(false);
+
+  const setUpClick = () => {
+    setCompanySidebarOpen(!isCompanySidebarOpen);
+    onToggleCompanySidebar();
+    return;
+  }
   return (
-    <aside className="w-[248px] bg-[#0D0D0D] scrollbar-hide pl-1 min-w-[248px] max-w-[248px] space-y-2">
-      <div className="w-full bg-[#1C1C1E] max-h-[44px] mt-1 rounded-xl p-1">
+  
+    <aside className={` w-[248px] bg-[#0D0D0D] scrollbar-hide pl-1 min-w-[248px] max-w-[248px] space-y-1 static left-1 top-0 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black after:to-transparent after:via-[#00000033] after:z-[1000] after:rounded-inherit   
+      ${isCompanySidebarOpen ? "left-[258px] after:left-[370px] top-0 after:opacity-100 after:visible" : " after:opacity-0 after:invisible left-0 top-0 "}`}>
+      <div className="w-full bg-[#1C1C1E] max-h-[44px] mt-2 rounded-2xl p-1">
         <div className="flex items-center justify-between">
-          {/* Left: Logo and Text (Single Button) */}
-          <button className="flex items-center hover:bg-[#2C2C2E] rounded-lg p-1 transition-colors">
+          {/* Logo Button */}
+          <button onClick={setUpClick} className="flex items-center hover:bg-[#2C2C2E] rounded-lg p-1 transition-colors">
             <img
               loading="eager"
               decoding="async"
@@ -167,32 +202,28 @@ export default function Sidebar({ items, activeItem, onItemClick }: SidebarProps
               src="/images/company/shots-logo.png"
               alt="Shots logo"
             />
-            <span className="ml-2">Shots</span>
+            <span className="ml-2 text-white">Shots</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 rotate-270" width="13px" fill="none" viewBox="0 0 24 24"><path fill="#fff9" d="M2 8.539c0-.797.688-1.448 1.543-1.448.421 0 .821.165 1.12.455l7.348 7.031 7.325-7.031a1.65 1.65 0 0 1 1.121-.455c.855 0 1.543.651 1.543 1.448 0 .403-.144.734-.433 1.003l-8.324 7.93c-.366.352-.766.528-1.243.528-.466 0-.866-.165-1.243-.527L2.444 9.542C2.155 9.262 2 8.932 2 8.539"></path></svg>
           </button>
 
-          {/* Right: SVG/Icon Button */}
-          <button className="p-2 hover:bg-[#2C2C2E] rounded-lg transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24px" viewBox="0 0 24 24"><path fill="currentColor" d="M19.44 2.52H4.56c-1.32 0-2.4 1.08-2.4 2.4V15c0 1.32 1.08 2.4 2.4 2.4h1.92v4.08l6-4.08h6.96c1.32 0 2.4-1.08 2.4-2.4V4.92c0-1.32-1.08-2.4-2.4-2.4M7.392 7.32h4.896c.408 0 .72.312.72.72s-.312.72-.72.72H7.392a.72.72 0 0 1-.72-.72c0-.384.312-.72.72-.72m8.736 4.8H7.392a.72.72 0 0 1-.72-.72c0-.384.312-.72.72-.72h8.736c.408 0 .72.312.72.72s-.312.72-.72.72"></path></svg>
-          </button>
+          {/* Right: Feedback Button */}
+          <FeedbackModal/>
         </div>
       </div>
       <div className="bg-[#1C1C1E] rounded-xl p-2">
-        <div className="flex text-center">
+        <div className="flex text-center mb-2">
         {items.map((item) => (
-                <div
-                key={item.name}
+            <div key={item.name}
                 className={cn(
-                    "p-2 flex-col w-1/2 text-center cursor-pointer rounded-md hover:bg-zinc-800  transition-colors",
-                    activeItem === item.name ? "text-white" : "text-[#ffffff5c]"
-                )}
-                onClick={() => onItemClick(item.name)}
-                >
-                {item.icon} {item.name}
+                    "p-2 flex-col font-bold w-1/2 text-center cursor-pointer rounded-md hover:bg-zinc-800  transition-colors",
+                    activeItem === item.name ? "text-white" : "text-[#ffffff5c]" )} onClick={() => onItemClick(item.name)}
+                > {item.icon}<span className="ml-3">{item.name}</span>
                 </div>
             ))}
         </div>
-        <AspectRatioSelector/>
-        <div className="frameSection overflow-y-auto scrollbar-hide h-full max-h-[90vh] pb-[116px] pt-[15px]">
+        {activeItem === "Frame" ? (<AspectRatioSelector/>) : (<LayoutScreenSection/>) }
+        <div className="frameSection overflow-y-auto scrollbar-hide h-full max-h-[80vh] pb-[116px] pt-[15px]">
+          {activeItem === "Frame" ? (<>
             <ScenesSection />
             <EffectsPanel/>
             <BackgroundSection/>
@@ -216,6 +247,25 @@ export default function Sidebar({ items, activeItem, onItemClick }: SidebarProps
                 onSelect={setSelectedImage}
                 />
             ))}
+          </>) : (<>
+            <MediaUploadSection/>
+            {styles.map((section) => (
+                <StylesSection
+                key={section.title}
+                title={section.title}
+                images={section.images}
+                selectedImage={selectedImage}
+                onSelect={setSelectedImage}
+                />
+            ))}
+          
+          <BorderSection/>
+          <ShadowSection />
+          <SizePositionSection/>
+          <DetailsSection/>
+          <MockupVisibilitySection/>
+          </>)}
+            
         </div>
       </div>
     </aside>

@@ -109,7 +109,7 @@ const BackgroundSection = () => {
           initial={{ opacity: 0, x: 10 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 10 }}
-          className="fixed left-[242px] top-[300px] p-3 z-[9999]  bg-[#1C1C1E]  border border-[#ffffff0f]  rounded-xl shadow-lg flex flex-col items-center"
+          className="fixed left-[242px] top-[300px] p-3 z-[9999]  bg-[#1C1C1E] border border-[#ffffff0f] rounded-xl shadow-lg flex flex-col items-center"
         >
           <HexColorPicker color={color} onChange={setColor} />
           <HexColorInput
@@ -159,7 +159,7 @@ const BackgroundSection = () => {
           initial={{ opacity: 0, x: 10 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 10 }}
-          className="fixed left-[242px] top-[380px] w-[280px] h-[446px] shadow-md z-[9999] bg-[#1C1C1E] border border-[#ffffff0f] p-3 rounded-xl shadow-lg flex flex-col items-center"
+          className="fixed left-[248px] top-[260px] w-[280px] h-[446px] shadow-md z-[9999] bg-[#1C1C1E] border border-[#ffffff0f] p-3 rounded-xl shadow-lg flex flex-col items-center"
         >
           <div className="relative w-full mb-3">
             <svg

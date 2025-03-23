@@ -54,19 +54,19 @@ const ScenesSection = () => {
       {/* SCENE BUTTONS */}
       <div className="flex gap-2 mb-4 p-1" ref={buttonsRef}>
         <div 
-          className={`bg-[#101012] p-3 rounded-md cursor-pointer text-center w-28 ${activeScene === 'Portrait' ? 'ring-1 ring-white' : ''}`}
+          className={`bg-[#101012] p-3 rounded-lg cursor-pointer text-center w-28 ${activeScene === 'Portrait' ? 'ring-1 ring-white' : ''}`}
           onClick={() => handleSceneClick('Portrait')}
         >
-          <div className="font-medium text-white mb-1">Portrait</div>
-          <div className="text-xs text-gray-500">{selectedPortraitOption}</div>
+          <div className="font-bold text-lg text-white">Portrait</div>
+          <div className="text-xs font-bold text-[#ffffff5c]">{selectedPortraitOption}</div>
         </div>
         
         <div 
-          className={`bg-[#101012] p-3 rounded-md cursor-pointer text-center w-28 ${activeScene === 'Shadow' ? 'ring-1 ring-white' : ''}`}
+          className={`bg-[#101012] p-3 rounded-lg cursor-pointer text-center w-28 ${activeScene === 'Shadow' ? 'ring-1 ring-white' : ''}`}
           onClick={() => handleSceneClick('Shadow')}
         >
-          <div className="font-medium text-white mb-1">Shadow</div>
-          <div className="text-xs text-gray-500">None</div>
+          <div className="font-bold text-lg text-white">Shadow</div>
+          <div className="text-xs font-bold text-[#ffffff5c]">None</div>
         </div>
       </div>
       
