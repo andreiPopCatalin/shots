@@ -1,5 +1,5 @@
 
-# Project Name
+# Shots Demo
 
 This project is built with Next.js, TypeScript, TailwindCSS, Framer Motion, and React Colorful.
 
