@@ -22,7 +22,8 @@ interface SidebarProps {
   items: { name: string }[];
   activeItem: string;
   onItemClick: (name: string) => void;
-  onToggleCompanySidebar: () => void;
+  isCompanySidebarOpen: boolean;
+  setCompanySidebarOpen: (open: boolean) => void;
 }
 
 const gradients = [
@@ -176,17 +177,11 @@ const categories = [
     },
   ];
 
-export default function Sidebar({ items, activeItem, onItemClick, onToggleCompanySidebar }: SidebarProps) {
+export default function Sidebar({ items, activeItem, onItemClick, isCompanySidebarOpen, setCompanySidebarOpen }: SidebarProps) {
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [selectedGradient, setSelectedGradient] = useState<string>("");
   const [selectedSolidColor, setSelectedSolidColor] = useState<string>("");
-  const [isCompanySidebarOpen, setCompanySidebarOpen] = useState(false);
 
-  const setUpClick = () => {
-    setCompanySidebarOpen(!isCompanySidebarOpen);
-    onToggleCompanySidebar();
-    return;
-  }
   return (
   
     <aside className={` w-[248px] bg-[#0D0D0D] scrollbar-hide pl-1 min-w-[248px] max-w-[248px] space-y-1 static left-1 top-0 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black after:to-transparent after:via-[#00000033] after:z-[1000] after:rounded-inherit   
@@ -194,7 +189,7 @@ export default function Sidebar({ items, activeItem, onItemClick, onToggleCompan
       <div className="w-full bg-[#1C1C1E] max-h-[44px] mt-2 rounded-2xl p-1">
         <div className="flex items-center justify-between">
           {/* Logo Button */}
-          <button onClick={setUpClick} className="flex items-center hover:bg-[#2C2C2E] rounded-lg p-1 transition-colors">
+          <button onClick={() => setCompanySidebarOpen(!isCompanySidebarOpen)} className="flex items-center hover:bg-[#2C2C2E] rounded-lg p-1 transition-colors">
             <img
               loading="eager"
               decoding="async"

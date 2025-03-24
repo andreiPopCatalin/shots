@@ -16,7 +16,7 @@ type SwitchButtonOption<T> = {
 type SwitchButtonGroupProps<T extends string> = {
   options: SwitchButtonOption<T>[];
   value: T;
-  onChange: (value: T) => void;
+  onChange?: (value: T) => void;
   groupClassName?: string;
   buttonClassName?: string;
 };
@@ -152,7 +152,7 @@ export default function ExportSidebar() {
   }, [isExportModalOpen]);
 
   return (
-    <aside className="fixed top-0 right-0 w-[254px] bg-[#0D0D0D] scrollbar-hide pr-2 min-w-[254px] max-w-[254px] space-y-1">
+    <aside className="static top-0 right-0 w-[254px] bg-[#0D0D0D] scrollbar-hide pr-2 min-w-[254px] max-w-[254px] space-y-1">
       <div className="w-full bg-[#FFFFFF] max-h-[52px] mt-2 rounded-xl p-1">
         <div className="flex items-center justify-between">
           {/* Logo Button - Updated to show current selections */}

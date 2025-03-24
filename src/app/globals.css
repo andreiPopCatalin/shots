@@ -28,6 +28,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -156,4 +158,23 @@ img.designtwopreview, img.designonepreview {
   to {
       opacity: 1
   }
+}
+
+/* For Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.scenesDesignSelect {
+    mix-blend-mode: normal;
+    backdrop-filter: blur(0.8em);
+    filter: blur(0.5px);
+    mask-image: linear-gradient(90deg, #0000005e 15%, #646464 50%, #00000075 85%);
 }

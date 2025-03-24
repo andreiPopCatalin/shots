@@ -22,10 +22,17 @@ const sidebarItems = [
 export default function Home() {
   const [active, setActive] = useState("Mockup");
   const [isCompanySidebarOpen, setIsCompanySidebarOpen] = useState(false);
+  const [isPreviewEnabled, setPreviewStatus] = useState(false);
+
   return (
-    <div className={cn(" flex h-screen w-screen bg-black text-white transform transition-all duration-300 ease-in-out ", isCompanySidebarOpen ? "pl-[380px]" : "")}>
-    <SidebarCompany isOpen={isCompanySidebarOpen} />
-    <Sidebar items={sidebarItems} activeItem={active} onItemClick={setActive} onToggleCompanySidebar={() => setIsCompanySidebarOpen(!isCompanySidebarOpen)} />
+    <div className={cn("overflow-hidden flex h-screen w-screen bg-black text-white transform transition-all duration-300 ease-in-out ", isCompanySidebarOpen ? "pl-[380px]" : "")}>
+
+{ !isPreviewEnabled && (
+  <>
+  <SidebarCompany isOpen={isCompanySidebarOpen} setIsOpen={setIsCompanySidebarOpen} />
+  <Sidebar isCompanySidebarOpen={isCompanySidebarOpen} setCompanySidebarOpen={setIsCompanySidebarOpen}  items={sidebarItems} activeItem={active} onItemClick={setActive} />
+  </>)}
+    
 
     <main className="bg-[#0D0D0D] w-full h-screen">
     {/* Centered Buttons */}
@@ -56,7 +63,7 @@ export default function Home() {
       </div>
 
       {/* Third Button */}
-      <div className="relative group">
+      <div className="relative group" onClick={() => (setPreviewStatus(!isPreviewEnabled))}>
         <button className="px-2 py-1 text-white rounded-lg transition-colors cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24">
             <path fill="currentColor" d="M3.132 10.687q.499 0 .81-.322.322-.322.322-.81v-.737l-.218-3.259 2.421 2.543 2.992 3.021q.322.321.79.321.53 0 .862-.321.343-.322.343-.841 0-.239-.093-.446a1.2 1.2 0 0 0-.239-.384l-3.013-2.99-2.546-2.418 3.273.218h.8q.488 0 .81-.311a1.1 1.1 0 0 0 .322-.82q0-.488-.322-.81Q10.135 2 9.636 2H3.88q-.894 0-1.392.498-.489.488-.488 1.37v5.687q0 .478.322.81.321.322.81.322M14.363 22h5.756q.893 0 1.382-.499.498-.488.499-1.38v-5.677a1.08 1.08 0 0 0-.333-.81 1.1 1.1 0 0 0-.81-.322q-.479 0-.8.322a1.1 1.1 0 0 0-.322.81v.737l.218 3.259-2.431-2.554-2.982-3.009a1.07 1.07 0 0 0-.8-.322q-.52 0-.863.322-.342.321-.342.84 0 .239.083.457.093.207.27.374l2.992 2.989 2.566 2.418-3.283-.218h-.8q-.488 0-.821.322a1.1 1.1 0 0 0-.322.809q0 .488.322.81.333.322.821.322"></path>
@@ -79,7 +86,8 @@ export default function Home() {
     </div>
   </div>
 </main>
-    <ExportSidebar/>
+ { (!isCompanySidebarOpen && !isPreviewEnabled) && (<ExportSidebar/>)}
+ 
   </div>
   );
 }

@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import React, { JSX, useState } from "react";
 
 type AspectRatio = {
   key: number;
   label: string;
   value: string;
   title: string;
+  image?: JSX.Element;
   category: string;
 };
 
 const LayoutScreenSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedRatio, setSelectedRatio] = useState("4:3");
-  const [selectedCategory, setSelectedCategory] = useState("Default");
-  const [selectedValue, setSelectedValue] = useState("1920x1440");
+  const [selectedCategory, setSelectedCategory] = useState("Screenshot");
 
   // Define aspect ratios grouped by category
   const menu = [
@@ -24,47 +23,40 @@ const LayoutScreenSection = () => {
     { name: "Wearable", icon: "M5.5 15.533c0 1.406.529 2.412 1.556 2.978.486.26.749.561.936 1.141l.305 1.042c.165.544.547.806 1.119.806h4.116c.592 0 .95-.254 1.119-.806l.317-1.042c.175-.58.446-.881.925-1.141 1.027-.566 1.556-1.572 1.556-2.978V8.466c0-1.406-.529-2.412-1.556-2.978-.479-.26-.75-.561-.925-1.141l-.317-1.042c-.153-.536-.535-.805-1.119-.805H9.416c-.572 0-.954.261-1.119.805l-.305 1.042c-.179.572-.442.889-.936 1.141C6.037 6.03 5.5 7.044 5.5 8.466zm1.178-.164V8.633c0-1.428.836-2.284 2.232-2.284h5.132c1.404 0 2.229.856 2.229 2.284v6.736c0 1.425-.825 2.281-2.229 2.281H8.91c-1.396 0-2.232-.856-2.232-2.281m10.557-3.988h.342c.448 0 .748-.315.748-.803V9.331c0-.496-.3-.811-.748-.811h-.342zM5.5 15.533c0 1.406.529 2.412 1.556 2.978.486.26.749.561.936 1.141l.305 1.042c.165.544.547.806 1.119.806h4.116c.592 0 .95-.254 1.119-.806l.317-1.042c.175-.58.446-.881.925-1.141 1.027-.566 1.556-1.572 1.556-2.978V8.466c0-1.406-.529-2.412-1.556-2.978-.479-.26-.75-.561-.925-1.141l-.317-1.042c-.153-.536-.535-.805-1.119-.805H9.416c-.572 0-.954.261-1.119.805l-.305 1.042c-.179.572-.442.889-.936 1.141C6.037 6.03 5.5 7.044 5.5 8.466zm1.178-.164V8.633c0-1.428.836-2.284 2.232-2.284h5.132c1.404 0 2.229.856 2.229 2.284v6.736c0 1.425-.825 2.281-2.229 2.281H8.91c-1.396 0-2.232-.856-2.232-2.281m10.557-3.988h.342c.448 0 .748-.315.748-.803V9.331c0-.496-.3-.811-.748-.811h-.342z" }, // Example SVG path for a wearable
   ];
   const ratios: AspectRatio[] = [
-    // Global Ratios
-    { key: 1, label: "16:9", value: "12 Layouts", title: "ScreenShot", category: "All" },
-    { key: 2, label: "3:2", value: "9 Layouts", title: "Browser", category: "All" },
-    { key: 3, label: "4:3", value: "7 Layouts", title: "Minimal Desktop", category: "All" },
-    { key: 4, label: "5:4", value: "13 Layouts", title: "iPhone 16", category: "iPhone 16 Lineup" },
-    { key: 5, label: "1:1", value: "13 Layouts", title: "iPhone 16 Plus", category: "iPhone 16 Lineup" },
-    { key: 6, label: "4:5", value: "13 Layouts", title: "Iphone 16 Pro", category: "iPhone 16 Lineup" },
-    { key: 7, label: "3:4", value: "13 Layouts", title: "Iphone 16 Pro Max", category: "iPhone 16 Lineup" },
-    { key: 8, label: "2:3", value: "13 Layouts", title: "", category: "iPhone 15 & earlier" },
-    { key: 9, label: "9:16", value: "13 Layouts", title: "", category: "" },
 
-    // Instagram Ratios
-    { key: 10, label: "1:1", value: "1080 x 1080", title: "Post", category: "Instagram" },
-    { key: 11, label: "4:5", value: "1080 x 1350", title: "Portrait", category: "Instagram" },
-    { key: 12, label: "9:16", value: "1080 x 1920", title: "Story", category: "Instagram" },
+    { key: 1, label: "ScreenShot", image: <img src="/images/mocks/0.png" className="w-[223px] h-[178px]" />, value: "12 Layouts", title: "ScreenShot", category: "All" },
+    { key: 2, label: "Browser", image: <img src="/images/mocks/1.png" className="w-[223px] h-[178px]" />,value: "9 Layouts", title: "Browser", category: "All" },
+    { key: 3, label: "Minimal Desktop", image: <img src="/images/mocks/2.png" className="w-[223px] h-[178px]" />,value: "7 Layouts", title: "Minimal Desktop", category: "All" },
 
-    // Twitter Ratios
-    { key: 13, label: "16:9", value: "1200 x 675", title: "Tweet", category: "Twitter" },
-    { key: 14, label: "3:1", value: "1500 x 500", title: "Cover", category: "Twitter" },
+    { key: 4, label: "iPhone 16", image: <img src="/images/mocks/i16_0.png" className="w-[223px] h-[178px]" />,value: "13 Layouts", title: "iPhone 16", category: "iPhone 16 Lineup" },
+    { key: 5, label: "iPhone 16 Plus", image: <img src="/images/mocks/i16_1.png" className="w-[223px] h-[178px]" />,value: "13 Layouts", title: "iPhone 16 Plus", category: "iPhone 16 Lineup" },
+    { key: 6, label: "Iphone 16 Pro", image: <img src="/images/mocks/i16_2.png" className="w-[223px] h-[178px]" />,value: "13 Layouts", title: "Iphone 16 Pro", category: "iPhone 16 Lineup" },
+    { key: 7, label: "Iphone 16 Pro Max", image: <img src="/images/mocks/i16_3.png" className="w-[223px] h-[178px]" />,value: "13 Layouts", title: "Iphone 16 Pro Max", category: "iPhone 16 Lineup" },
 
-    // Dribbble Ratios
-    { key: 15, label: "4:3", value: "2800 x 2100", title: "Shot", category: "Dribbble" },
+    { key: 10, label: "iPhone 15", image: <img src="/images/mocks/i15_0.png" className="w-[223px] h-[178px]" />, value: "13 Layouts", title: "iPhone 15", category: "iPhone 15 & earlier" },
+    { key: 11, label: "iPhone 15 Plus", image: <img src="/images/mocks/i15_1.png" className="w-[223px] h-[178px]" />, value: "13 Layouts", title: "iPhone 15 Plus", category: "iPhone 15 & earlier" },
+    { key: 12, label: "iPhone 15 Pro", image: <img src="/images/mocks/i15_2.png" className="w-[223px] h-[178px]" />, value: "13 Layouts", title: "iPhone 15 Pro", category: "iPhone 15 & earlier" },
+    { key: 13, label: "iPhone 15 Pro Max", image: <img src="/images/mocks/i15_3.png" className="w-[223px] h-[178px]" />, value: "13 Layouts", title: "iPhone 15 Pro Max", category: "iPhone 15 & earlier" },
 
-    // YouTube Ratios
-    { key: 16, label: "16:9", value: "2560 x 1440", title: "Banner", category: "YouTube" },
-    { key: 17, label: "16:9", value: "1280 x 720", title: "Thumbnail", category: "YouTube" },
-    { key: 18, label: "16:9", value: "1920 x 1080", title: "Video", category: "YouTube" },
+    { key: 14, label: "Nothing Phone",  image: <img src="/images/mocks/andr_0.png" className="w-[223px] h-[178px]" />, value: "13 Layouts", title: "Nothing Phone", category: "Android Phones" },
+    { key: 15, label: "Pixel 7 Pro", image: <img src="/images/mocks/andr_1.png" className="w-[223px] h-[178px]" />, value: "13 Layouts", title: "Pixel 7 Pro", category: "Android Phones" },
 
-    // Pinterest Ratios
-    { key: 19, label: "10:21", value: "1000 x 2000", title: "Long", category: "Pinterest" },
-    { key: 20, label: "2:3", value: "1000 x 1500", title: "Optimal", category: "Pinterest" },
-    { key: 21, label: "1:1", value: "1000 x 1000", title: "Square", category: "Pinterest" },
+    { key: 16, label: "iPad Mini", image: <img src="/images/mocks/tablet_0.png" className="w-[223px] h-[178px]" />, value: "10 layouts", title: "iPad Mini", category: "Tablets" },
+    { key: 17, label: "iPad Air", image: <img src="/images/mocks/tablet_1.png" className="w-[223px] h-[178px]" />, value: "10 layouts", title: "iPad Air", category: "Tablets" },
+    { key: 18, label: "iPad Pro 11", image: <img src="/images/mocks/tablet_2.png" className="w-[223px] h-[178px]" />, value: "10 layouts", title: "iPad Pro 11", category: "Tablets" },
+    { key: 19, label: "iPad Pro 13", image: <img src="/images/mocks/tablet_3.png" className="w-[223px] h-[178px]" />, value: "10 layouts", title: "iPad Pro 13", category: "Tablets" },
 
-    // App Store Ratios
-    { key: 22, label: "1284 : 2778", value: "1284 x 2778", title: "iPhone 6.5",category: "App Store" },
-    { key: 23, label: "1242 : 2208", value: "1242 x 2208", title: "iPhone 5.5", category: "App Store" },
-    { key: 24, label: "2048 : 2732", value: "2048 x 2732", title: "iPad Pro 12.9", category: "App Store" },
-    { key: 25, label: "2778 : 1284", value: "2778 x 1284", title: "iPhone 6.5", category: "App Store" },
-    { key: 26, label: "2208 : 1242", value: "2208 x 1242", title: "iPhone 5.5", category: "App Store" },
-    { key: 27, label: "2732 : 2048", value: "2732 x 2048", title: "iPad Pro 12.9", category: "App Store" },
-    { key: 28, label: "16:10", value: "576 x 1024", title: "Mac", category: "App Store" },
+    { key: 20, label: "Macbook Pro 16",image: <img src="/images/mocks/l0.png" className="w-[223px] h-[178px]" />, value: "9 layouts", title: "Macbook Pro 16", category: "Laptops" },
+    { key: 21, label: "Macbook Air M2",image: <img src="/images/mocks/l1.png" className="w-[223px] h-[178px]" />, value: "9 layouts", title: "Macbook Air M2", category: "Laptops" },
+    { key: 22, label: "Macbook Air 13",image: <img src="/images/mocks/l2.png" className="w-[223px] h-[178px]" />, value: "9 layouts", title: "Macbook Air 13",category: "Laptops" },
+
+    { key: 23, label: "iMac 24",image: <img src="/images/mocks/d0.png" className="w-[223px] h-[178px]" />, value: "9 layouts", title: "iMac 24", category: "Desktop" },
+    { key: 24, label: "Pro Display XDR",image: <img src="/images/mocks/d1.png" className="w-[223px] h-[178px]" />, value: "9 layouts", title: "Pro Display XDR", category: "Desktop" },
+    { key: 25, label: "iMac Pro" ,image: <img src="/images/mocks/d3.png" className="w-[223px] h-[178px]" />, value: "9 layouts", title: "iMac Pro", category: "Desktop" },
+
+    { key: 26, label: "Apple Watch Ultra",image: <img src="/images/mocks/w0.png" className="w-[223px] h-[178px]" />, value: "11 layouts", title: "Apple Watch Ultra", category: "Wearables" },
+    { key: 27, label: "Apple Watch 10 46mm",image: <img src="/images/mocks/w2.png" className="w-[223px] h-[178px]" />, value: "11 layouts", title: "Apple Watch 10 46mm", category: "Wearables" },
+    { key: 28, label: "Apple Watch 10 42mm",image: <img src="/images/mocks/w3.png" className="w-[223px] h-[178px]" />, value: "11 layouts", title: "Apple Watch 10 42mm", category: "Wearables" },
   ];
 
   // Group ratios by category
@@ -77,13 +69,8 @@ const LayoutScreenSection = () => {
   }, {} as Record<string, AspectRatio[]>);
 
   const handleRatioSelect = (ratio: AspectRatio) => {
-    setSelectedRatio(ratio.label);
-    setSelectedValue(ratio.value);
-    setSelectedCategory(ratio.category === "" ? "Default" : ratio.category);
+    setSelectedCategory(ratio.category === "" ? "Screenshot" : ratio.category);
   };
-
-  // Extract width and height from the selected value
-  const [width, height] = selectedRatio.split(":").map(Number);
 
   return (
     <div className="relative">
@@ -95,15 +82,11 @@ const LayoutScreenSection = () => {
             {/* Left: Square */}
             <div
                 className="current-frame-icon max-h-[50px] w-[30px] border border-[#FFF] rounded bg-[#79797B]"
-                style={{
-                aspectRatio: `${width} / ${height}`,
-                }}
             ></div>
 
             {/* Middle: Category and Selected Ratio */}
             <div className="flex-1 mx-4 text-left">
                 <span className="text-base mr-2">{selectedCategory}</span>
-                <span className="text-base ">{selectedRatio}</span>
             </div>
 
             {/* Right: Arrow Icon */}
@@ -132,7 +115,7 @@ const LayoutScreenSection = () => {
             {menu.map((item) => (
                 <button
                 key={item.name}
-                className="px-2 text-center py-2 text-white rounded-lg hover:bg-[#3C3C3E] transition-colors flex items-center gap-4"
+                className="px-2 text-center py-2 text-white rounded-lg hover:bg-[#3C3C3E] transition-colors flex items-center gap-4 cursor-pointer"
                 >
                     {item.icon !== "" && (
  <svg
@@ -158,21 +141,17 @@ const LayoutScreenSection = () => {
           <div className="overflow-y-auto max-h-[62vh] h-full scrollbar-hide">
             {Object.entries(groupedRatios).map(([category, ratios]) => (
               <div key={category} className="mb-4 p-2">
-                <div className="text-base font-medium text-white mb-2">{category}</div>
+                <div className="text-base font-medium text-white mb-4">{category}<span className="float-right text-xs p-2 bg-[#373738] rounded-xl cursor-pointer mr-1">See all</span></div>
                 <div className="grid grid-cols-2 gap-2">
-                  {ratios.map((ratio) => (
+                  {ratios.map((device) => (
                     <button
-                      key={ratio.key}
-                      onClick={() => handleRatioSelect(ratio)}
-                      className="px-4 py-2 w-full mx-auto text-white rounded-lg bg-[#373738] hover:bg-[#3C3C3E] transition-colors"
+                      key={device.key}
+                      onClick={() => handleRatioSelect(device)}
+                      className="px-4 py-2 w-full mx-auto text-white rounded-xl bg-[#373738] hover:bg-[#3C3C3E] transition-colors cursor-pointer"
                     >
-                        <p className="text-sm text-white text-left">{ratio.title === "" ? "" : ratio.title}</p>
-                        <p className="text-xs text-gray-400 text-left">{ratio.value}</p>
-                      <div
-                        className="aspect-square flex items-center justify-center bg-[#29292B] m-2 max-h-[100px] border border-[#ffffff5c] p-2 rounded-lg mb-1"
-                        style={{ aspectRatio: ratio.label.replace(":", "/") }}
-                      ><span className="text-xs px-2 py-1">{ratio.label}</span></div>
-                      
+                        <p className="text-sm text-white text-left">{device.title === "" ? "" : device.title}</p>
+                        <p className="text-xs text-gray-400 text-left">{device.value}</p>
+                      {device.image}
                     </button>
                   ))}
                 </div>

@@ -93,7 +93,7 @@ const AspectRatioSelector = () => {
             ></div>
 
             {/* Middle: Category and Selected Ratio */}
-            <div className="flex-1 mx-4 text-left">
+            <div className="flex-1 mx-4 text-left truncate">
                 <span className="text-base mr-2">{selectedCategory}</span>
                 <span className="text-base ">{selectedRatio}</span>
             </div>
@@ -119,42 +119,41 @@ const AspectRatioSelector = () => {
       {/* Modal */}
       {isModalOpen && (
         <div className="absolute max-h-[70vh] h-[70vh] w-[360px] top-14 left-0 bg-[#2A2A2C]  border border-[#ffffff0f] rounded-xl shadow-lg z-50">
-          {/* Width and Height Inputs */}
-          <div className="flex items-center gap-2 py-4 px-2">
-  {/* Width Input */}
-  <div className="relative flex-1">
-    <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs">W</span>
-    <input
-      name="width"
-      type="number"
-      className="bg-[#373738] p-1 rounded-lg pl-6 text-right w-full"
-      placeholder="2800"
-      min="128"
-      max="7680"
-    />
-  </div>
-
-  {/* Height Input */}
-  <div className="relative flex-1">
-    <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs">H</span>
-    <input
-      name="height"
-      type="number"
-      className="bg-[#373738] p-1 rounded-lg pl-6 text-right w-full"
-      placeholder="2100"
-      min="128"
-      max="7680"
-    />
-  </div>
-
-  {/* Set Button */}
-  <button className="bg-[#959596] text-white px-3 py-1 rounded-lg hover:bg-blue-600 transition-colors">
-    Set
-  </button>
-</div>
-
           {/* Categories and Ratios */}
           <div className="overflow-y-auto max-h-[62vh] h-full scrollbar-hide">
+            {/* Width and Height Inputs */}
+            <div className="flex items-center gap-2 py-4 px-2">
+            {/* Width Input */}
+            <div className="relative flex-1">
+                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs">W</span>
+                <input
+                name="width"
+                type="number"
+                className="bg-[#373738] p-1 rounded-lg pl-6 text-right w-full"
+                placeholder="2800"
+                min="128"
+                max="7680"
+                />
+            </div>
+
+            {/* Height Input */}
+            <div className="relative flex-1">
+                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs">H</span>
+                <input
+                name="height"
+                type="number"
+                className="bg-[#373738] p-1 rounded-lg pl-6 text-right w-full"
+                placeholder="2100"
+                min="128"
+                max="7680"
+                />
+            </div>
+
+            {/* Set Button */}
+            <button className="bg-[#959596] text-white px-3 py-1 rounded-lg hover:bg-blue-600 transition-colors">
+                Set
+            </button>
+            </div>
             {Object.entries(groupedRatios).map(([category, ratios]) => (
               <div key={category} className="mb-4 border-t p-2 border-[#ffffff14]">
                 <div className="text-base font-medium text-white mb-2">{category}</div>
