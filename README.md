@@ -9,23 +9,23 @@ To get started with the project, follow these steps:
 
 1. **Install Dependencies:**
 
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 2. **Run the Development Server:**
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 This will start the development server and open the app in your browser. By default, it should be available at [http://localhost:3000](http://localhost:3000).
 
 3. **Build the Project:**
 
-\`\`\`bash
+```bash
 npm run build
-\`\`\`
+```
 
 This will build the project for production. Once the build is complete, you can deploy it as necessary.
 
