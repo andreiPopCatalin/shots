@@ -4,11 +4,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import SwitchButtonGroup from '../switchButtonGroup/switchButtonGroup';
 
 type ShadowType = "Overlay" | "Underlay";
+type activeScene = null | "Portrait" | "Shadow";
 
 const ScenesSection = () => {
   const modalRef = useRef(null);
   const buttonsRef = useRef(null);
-  const [activeScene, setActiveScene] = useState(null);
+  const [activeScene, setActiveScene] = useState<activeScene>(null);
   const [showPortraitModal, setShowPortraitModal] = useState(false);
   const [selectedPortraitOption, setSelectedOption] = useState('None');
   const [showShadowModal, setShowShadowModal] = useState(false);
@@ -29,7 +30,7 @@ const ScenesSection = () => {
   const [distance, setDistance] = useState(5.0);
   const [position, setPosition] = useState(50);
 
-  const handleSceneClick = (scene) => {
+  const handleSceneClick = (scene: string) => {
     setActiveScene(scene);
     if (scene === 'Portrait') {
       setShowPortraitModal(true);
@@ -41,12 +42,12 @@ const ScenesSection = () => {
   };
 
 
-  const handleOptionSelect = (option) => {
+  const handleOptionSelect = (option: React.SetStateAction<string>) => {
     setSelectedOption(option);
   };
 
   useEffect(() => {
-    function handleClickOutside(event) {
+    function handleClickOutside(event: { target: any; }) {
       if (
         modalRef.current && 
         !modalRef.current.contains(event.target) &&
@@ -235,18 +236,18 @@ const ScenesSection = () => {
           
           {/* OPTIONS */}
 
-          <div className="grid grid-cols-3 gap-1 mb-1 p-4 mt-[-40px] z-[10] relative">
+          <div className="grid grid-cols-3 gap-1 mb-1 p-2 mt-[-40px] z-[10] relative">
             {shadowOptions.map((option) => (
               <div 
                 key={option.id}
                 className={`bg-zinc-900 rounded-lg flex items-center justify-center cursor-pointer ${selectedShadowtOption === option.id ? 'ring-1 ring-white' : ''}`}
                 onClick={() => setSelectedShadowOption(option.id)}
               >
-                <div className="text-center">
+                <div className="text-center w-full">
                   {option.img ? (
-                    <img src={option.img} alt="Phone preview" className="w-full h-8 rounded-lg" />
+                    <img src={option.img} alt="Phone preview" className="w-full h-9 rounded-lg" />
                   ) : (
-                    <div className="w-12 h-8 flex items-center justify-center mb-1 mx-auto">
+                    <div className="w-12 h-9 flex items-center justify-center mb-1 mx-auto">
                       {option.icon}
                     </div>
                   )}

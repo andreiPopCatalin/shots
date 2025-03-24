@@ -1,6 +1,6 @@
 import { cn } from "@/utils/cn";
 import ImageSection from "../ImageSection.tsx/imageSection";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import GradientSection from "../gradientSection.tsx/gradientSection";
 import SolidColorSection from "../solidColorsSection.tsx/solidColorsSection";
 import MagicBackgroundsPanel from "../magicBackgroundPanel/magicBackgroundPanel";
@@ -19,7 +19,9 @@ import StylesSection from "../stylesSection/stylesSection";
 import LayoutScreenSection from "../layoutScreenSection/layoutScreenSection";
 
 interface SidebarProps {
-  items: { name: string }[];
+  items: {
+    icon: ReactNode; name: string 
+}[];
   activeItem: string;
   onItemClick: (name: string) => void;
   isCompanySidebarOpen: boolean;

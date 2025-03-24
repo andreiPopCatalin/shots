@@ -11,13 +11,13 @@ const BorderSection = () => {
           <span className="text-[#626264] font-bold text-sm mb-2">Border</span>
                       <SwitchButtonGroup
                         options={[
-                          { value: Number("0"), label: <img className="w-[28px] mx-auto mb-1 rounded-md" src="/images/border/sharp.webp"/>, subtext: "Sharp" },
-                          { value: Number("20"), label: <img className="w-[28px] mx-auto mb-1 rounded-md" src="/images/border/curve.png"/>, subtext: "Curved" },
-                          { value: Number("40"), label: <img className="w-[28px] mx-auto mb-1 rounded-md" src="/images/border/round.webp"/>, subtext: "Round" },
+                          { value: "0", label: <img className="w-[28px] mx-auto mb-1 rounded-md" src="/images/border/sharp.webp"/>, subtext: "Sharp" },
+                          { value: "20", label: <img className="w-[28px] mx-auto mb-1 rounded-md" src="/images/border/curve.png"/>, subtext: "Curved" },
+                          { value: "40", label: <img className="w-[28px] mx-auto mb-1 rounded-md" src="/images/border/round.webp"/>, subtext: "Round" },
                         ]}
                         groupClassName="h-[74px]"
-                        value={radius}
-                        onChange={(quality) => (setRadius(quality))}
+                        value={String(radius)}  // Convert `radius` to string
+                        onChange={(quality) => (setRadius(Number(quality)))}
                       />
           <div className="relative h-[28px] flex items-center bg-[#101012] rounded-lg h-8 mt-2 overflow-hidden">
             <span className="text-gray-300 text-xs font-medium pl-3 z-10">Radius</span>

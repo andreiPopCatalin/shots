@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { JSX, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import { cn } from "@/utils/cn";
@@ -10,12 +10,12 @@ const BackgroundSection = () => {
   const [showImageUpload, setshowImageUpload] = useState(false);
   const [showUnsplash, setShowUnsplash] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  const pickerRef = useRef(null);
-  const imageUploadRef = useRef(null);
-  const unsplashRef = useRef(null);
+  const pickerRef = useRef<HTMLDivElement | null>(null);
+  const imageUploadRef = useRef<HTMLDivElement | null>(null);
+  const unsplashRef = useRef<HTMLDivElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const icons = {
+  const icons: Record<"transparent" | "color" | "image" | "unsplash", JSX.Element> = {
     transparent: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
         <rect width="24" height="24" fill="url(#transparent_svg__a)" fillOpacity="0.4" rx="6"></rect>
@@ -35,7 +35,7 @@ const BackgroundSection = () => {
 
   // Handle clicks outside the modals
   useEffect(() => {
-    function handleClickOutside(event) {
+    function handleClickOutside(event: { target: any; }) {
       if (
         (pickerRef.current && !pickerRef.current.contains(event.target)) &&
         (imageUploadRef.current && !imageUploadRef.current.contains(event.target)) &&
@@ -97,7 +97,7 @@ const BackgroundSection = () => {
               active === bg.key ? "outline outline-[1.5px] outline-white outline-offset-[3px]" : ""
             )}
           >
-            {icons[bg.key]}
+            {icons[bg.key as keyof typeof icons]}
           </button>
         ))}
       </div>
@@ -109,7 +109,7 @@ const BackgroundSection = () => {
           initial={{ opacity: 0, x: 10 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 10 }}
-          className="fixed left-[242px] top-[300px] p-3 z-[9999]  bg-[#1C1C1E] border border-[#ffffff0f] rounded-xl shadow-lg flex flex-col items-center"
+          className="fixed left-[242px] top-[300px] p-3 z-[9999] bg-[#1C1C1E]  border border-[#ffffff0f] rounded-xl shadow-lg flex flex-col items-center"
         >
           <HexColorPicker color={color} onChange={setColor} />
           <HexColorInput
@@ -159,7 +159,7 @@ const BackgroundSection = () => {
           initial={{ opacity: 0, x: 10 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 10 }}
-          className="fixed left-[248px] top-[260px] w-[280px] h-[446px] shadow-md z-[9999] bg-[#1C1C1E] border border-[#ffffff0f] p-3 rounded-xl shadow-lg flex flex-col items-center"
+          className="fixed left-[242px] top-[380px] w-[280px] h-[446px] shadow-md z-[9999] bg-[#1C1C1E] border border-[#ffffff0f] p-3 rounded-xl shadow-lg flex flex-col items-center"
         >
           <div className="relative w-full mb-3">
             <svg

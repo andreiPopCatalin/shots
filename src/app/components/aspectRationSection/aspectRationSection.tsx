@@ -13,6 +13,8 @@ const AspectRatioSelector = () => {
   const [selectedRatio, setSelectedRatio] = useState("4:3");
   const [selectedCategory, setSelectedCategory] = useState("Default");
   const [selectedValue, setSelectedValue] = useState("1920x1440");
+  const [widthSet, setWidth] = useState("");
+  const [heightSet, setHeight] = useState("");
 
   // Define aspect ratios grouped by category
   const ratios: AspectRatio[] = [
@@ -72,6 +74,16 @@ const AspectRatioSelector = () => {
     setSelectedRatio(ratio.label);
     setSelectedValue(ratio.value);
     setSelectedCategory(ratio.category === "" ? "Default" : ratio.category);
+    setWidth("1920");
+    setHeight("1440");
+  };
+
+  const handleSetCustomRatio = () => {
+    if (widthSet && heightSet) {
+      setSelectedRatio(`${width}:${height}`);
+      setSelectedValue(`${width}x${height}`);
+      setSelectedCategory("Custom");
+    }
   };
 
   // Extract width and height from the selected value
@@ -129,6 +141,7 @@ const AspectRatioSelector = () => {
                 <input
                 name="width"
                 type="number"
+                onChange={(e) => setWidth(e.target.value)}
                 className="bg-[#373738] p-1 rounded-lg pl-6 text-right w-full"
                 placeholder="2800"
                 min="128"
@@ -142,6 +155,7 @@ const AspectRatioSelector = () => {
                 <input
                 name="height"
                 type="number"
+                onChange={(e) => setHeight(e.target.value)}
                 className="bg-[#373738] p-1 rounded-lg pl-6 text-right w-full"
                 placeholder="2100"
                 min="128"
@@ -150,7 +164,8 @@ const AspectRatioSelector = () => {
             </div>
 
             {/* Set Button */}
-            <button className="bg-[#959596] text-white px-3 py-1 rounded-lg hover:bg-blue-600 transition-colors">
+            <button onClick={handleSetCustomRatio}
+              disabled={!width || !height} className="bg-[#959596] text-black text-md px-3 py-1 rounded-lg hover:bg-white hover:text-black transition-colors">
                 Set
             </button>
             </div>
