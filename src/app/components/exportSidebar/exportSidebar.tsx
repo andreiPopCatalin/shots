@@ -1,5 +1,3 @@
-// Add these imports and types
-import { cn } from "@/utils/cn";
 import React, { useState, useRef, useEffect } from "react";
 import ExportPreviews from "../exportPreviews/exportPreviews";
 import SwitchButtonGroup from "../switchButtonGroup/switchButtonGroup";
@@ -155,7 +153,7 @@ export default function ExportSidebar() {
     <aside className="static top-0 right-0 w-[254px] bg-[#0D0D0D] scrollbar-hide pr-2 min-w-[254px] max-w-[254px] space-y-1">
       <div className="w-full bg-[#FFFFFF] max-h-[52px] mt-2 rounded-xl p-1">
         <div className="flex items-center justify-between">
-          {/* Logo Button - Updated to show current selections */}
+          {/* Logo Button */}
           <button className="flex items-center text-black rounded-lg p-1 cursor-pointer transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" viewBox="0 0 24 24">
               <path fill="currentColor" d="M12.058 2c-.631 0-1.087.442-1.087 1.073v13.393l.134 3.303.684-.241-4.069-4.527-1.921-1.867a1.08 1.08 0 0 0-.752-.295c-.605 0-1.047.47-1.047 1.06 0 .282.106.538.334.794l6.919 6.931c.228.241.51.376.805.376s.578-.135.806-.376l6.918-6.931c.228-.256.335-.512.335-.794 0-.59-.443-1.06-1.047-1.06-.282 0-.564.107-.752.295l-1.921 1.867-4.084 4.527.699.241.134-3.303V3.073c0-.631-.456-1.073-1.088-1.073"></path>
@@ -193,7 +191,7 @@ export default function ExportSidebar() {
         </div>
       </div>
 
-      {/* Export Settings Modal with the new switch-like components */}
+      {/* Export Settings  */}
       {isExportModalOpen && (
         <div ref={modalRef} className="absolute top-[60px] right-[8px] bg-[#2A2A2C] rounded-2xl px-3 py-3 w-[256px] max-w-[256px] max-w-full shadow-lg z-50">
           <h2 className="text-base font-bold mb-4">Export settings</h2>

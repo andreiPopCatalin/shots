@@ -63,7 +63,7 @@ const ExportPreviews: FC<ExportPreviewsProps> = ({ boxes }) => {
           ></motion.div>)}
         </motion.div>
       ))}
-              </>
+    </>
   );
 };
 

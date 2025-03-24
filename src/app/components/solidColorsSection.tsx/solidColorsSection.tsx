@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { cn } from "@/utils/cn";
 
+interface SolidColorSectionProps {
+  onSelect: (color: string) => void;
+}
+
 const solidColors = [
     "rgb(248, 249, 250)", "rgb(222, 226, 230)", "rgb(173, 181, 189)", 
     "rgb(73, 80, 87)", "rgb(33, 37, 41)", "rgb(21, 22, 23)", 
@@ -14,9 +18,9 @@ const solidColors = [
     "rgb(189, 178, 255)", "rgb(255, 198, 255)", "rgb(255, 199, 236)"
 ];
 
-const SolidColorSection= ({ onSelect }) => {
+const SolidColorSection: React.FC<SolidColorSectionProps> = ({ onSelect }) => {
   const [expanded, setExpanded] = useState<boolean>(false);
-  const [selectedColor, setSelectedColor] = useState<String>("");
+  const [selectedColor, setSelectedColor] = useState<string>("");
 
   return (
     <div>

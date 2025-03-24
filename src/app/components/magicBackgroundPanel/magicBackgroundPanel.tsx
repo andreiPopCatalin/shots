@@ -2,7 +2,7 @@ import React from "react";
 
 const MagicBackgroundsPanel = () => {
   return (
-    <div className="rounded-xl">
+    <div>
       <div className="flex justify-between items-start gap-4 relative z-[1] p-2">
         <div className="flex flex-col  w-3/5">
           <h6 className="text-white text-sm font-semibold flex items-center mb-2">

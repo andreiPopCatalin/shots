@@ -1,11 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 
 const MediaUploadSection = () => {
       const fileInputRef = useRef<HTMLInputElement | null>(null);
       const handleClickUpload = () => {
         fileInputRef.current?.click();
       };
-    return(<>
+    return(
+    <>
             <h6 className="text-[#ffffff5c] text-xs font-semibold mb-2">MEDIA</h6>
             <div
                 className="rounded-lg p-2 w-full flex flex-col items-center justify-center cursor-pointer bg-[#0D0D0E]"
@@ -17,7 +18,8 @@ const MediaUploadSection = () => {
                 </div>
           </div>
           <input type="file" ref={fileInputRef} accept="image/*" className="hidden" />
-          </>);
+          </>
+      );
 };  
 
 export default MediaUploadSection;

@@ -7,8 +7,8 @@ type ShadowType = "Overlay" | "Underlay";
 type activeScene = null | "Portrait" | "Shadow";
 
 const ScenesSection = () => {
-  const modalRef = useRef(null);
-  const buttonsRef = useRef(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  const buttonsRef = useRef<HTMLDivElement | null>(null);
   const [activeScene, setActiveScene] = useState<activeScene>(null);
   const [showPortraitModal, setShowPortraitModal] = useState(false);
   const [selectedPortraitOption, setSelectedOption] = useState('None');
@@ -30,7 +30,7 @@ const ScenesSection = () => {
   const [distance, setDistance] = useState(5.0);
   const [position, setPosition] = useState(50);
 
-  const handleSceneClick = (scene: string) => {
+  const handleSceneClick = (scene: activeScene) => {
     setActiveScene(scene);
     if (scene === 'Portrait') {
       setShowPortraitModal(true);
@@ -51,7 +51,7 @@ const ScenesSection = () => {
       if (
         modalRef.current && 
         !modalRef.current.contains(event.target) &&
-        !buttonsRef.current.contains(event.target)
+        !buttonsRef.current?.contains(event.target)
       ) {
         setShowPortraitModal(false);
         setShowShadowModal(false);

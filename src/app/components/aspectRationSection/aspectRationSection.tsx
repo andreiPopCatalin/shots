@@ -16,7 +16,6 @@ const AspectRatioSelector = () => {
   const [widthSet, setWidth] = useState("");
   const [heightSet, setHeight] = useState("");
 
-  // Define aspect ratios grouped by category
   const ratios: AspectRatio[] = [
     // Global Ratios
     { key: 1, label: "16:9", value: "1920 x 1080", title: "", category: "" },
