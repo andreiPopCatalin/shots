@@ -225,6 +225,12 @@ const LayoutScreenSection = () => {
                         <p className="text-sm text-white text-left">{device.title === "" ? "" : device.title}</p>
                         <p className="text-xs text-gray-400 text-left">{device.value}</p>
                         {device.image}
+                        <div className="grid grid-cols-4 gap-1 mt-6 mb-1">
+                        <img className="rounded-md" loading="eager" decoding="async" src="/images/mocks/default.png" alt="Style"/>
+                        <img className="rounded-md" loading="eager" decoding="async" src="/images/mocks/glass-light.png" alt="Style"/>
+                        <img className="rounded-md" loading="eager" decoding="async" src="/images/mocks/glass-dark.png" alt="Style"/>
+                        <div className="bg-[#434344] rounded-md text-center flex items-center justify-center h-full">+ 6</div>
+                        </div>
                       </button>
                     ))}
                   </div>

@@ -39,6 +39,12 @@ const ScenesSection = () => {
       setShowShadowModal(true);
       setShowPortraitModal(false);
     }
+    
+    // When selecting shadow, set the image based on the selected shadow type
+    if (scene === 'Shadow') {
+      const selectedShadow = shadowOptions.find(option => option.id === selectedShadowtOption);
+      // Additional logic to set the image if necessary
+    }
   };
 
 
@@ -80,11 +86,25 @@ const ScenesSection = () => {
         </div>
         
         <div 
-          className={`bg-[#101012] p-3 rounded-lg cursor-pointer text-center w-28 ${activeScene === 'Shadow' ? 'ring-1 ring-white' : ''}`}
+          className={`bg-[#101012] p-3 rounded-lg cursor-pointer text-center w-28 relative ${activeScene === 'Shadow' ? 'ring-1 ring-white' : ''}`}
           onClick={() => handleSceneClick('Shadow')}
-        >
-          <div className="font-bold text-lg text-white">Shadow</div>
-          <div className="text-xs font-bold text-[#ffffff5c]">None</div>
+        >{selectedShadowtOption === 'None' ? '' : (
+          <img 
+            src={shadowOptions.find(option => option.id === selectedShadowtOption)?.img || ''}
+            alt="Shadow Image"
+            className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-60"
+          />
+        )}
+          <div 
+    className={`font-bold  relative text-lg ${selectedShadowtOption !== 'None' ? 'text-white' : 'text-white'} z-10`}
+  >
+    Shadow
+  </div>
+  <div 
+    className={`text-xs relative font-bold ${selectedShadowtOption !== 'None' ? 'text-white' : 'text-[#ffffff5c]'} z-10`}
+  >
+    {selectedShadowtOption === 'None' ? 'None' : 'Overlay'}
+  </div>
         </div>
       </div>
       
