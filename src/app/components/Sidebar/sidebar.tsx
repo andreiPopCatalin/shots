@@ -186,7 +186,7 @@ export default function Sidebar({ items, activeItem, onItemClick, isCompanySideb
 
   return (
   
-    <aside className={` w-[248px] bg-[#0D0D0D] scrollbar-hide pl-1 min-w-[248px] max-w-[248px] space-y-1 static left-1 top-0 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black after:to-transparent after:via-[#00000033] after:z-[1000] after:rounded-inherit   
+    <aside className={`after:transition-opacity after:duration-700 after:ease-in-out w-[248px] bg-[#0D0D0D] scrollbar-hide pl-1 min-w-[248px] max-w-[248px] space-y-1 static left-1 top-0 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black after:to-transparent after:via-[#00000033] after:z-[1000] after:rounded-inherit   
       ${isCompanySidebarOpen ? "left-[258px] after:left-[370px] top-0 after:opacity-100 after:visible" : " after:opacity-0 after:invisible left-0 top-0 "}`}>
       <div className="w-full bg-[#1C1C1E] max-h-[44px] mt-2 rounded-2xl p-1">
         <div className="flex items-center justify-between">

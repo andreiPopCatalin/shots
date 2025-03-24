@@ -38,6 +38,8 @@ This will build the project for production. Once the build is complete, you can 
 - **React Colorful**: A color picker component for React.
 
 ## Remained Tasks
+0. **Create a system that records all settings in order they trigger and compatible settings:**
+   - Update the components with parameters that are registered in the order they are triggered and stored, also verify compatible settings like if a background is selected from mysc to remove the other background settings if are and update this.
 
 1. **Update Export Resolution on Update from Frame Section:**
    - Update the export resolution when changes occur in the frame section to ensure that the exported content is consistent with the new frame resolution.
